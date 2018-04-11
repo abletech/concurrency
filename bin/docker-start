@@ -7,14 +7,20 @@ mix compile
 
 mkdir -p /app/tmp
 
-ENV_NAME=dev
+ENV_NAME=prod
 FILE=/app/tmp/db_init_$ENV_NAME
 if [ ! -f "$FILE" ]; then
-  echo "Creating and loading $ENV_NAME database"
+  echo "Creating and loading $ENV_NAME database schema"
   MIX_ENV=$ENV_NAME mix ecto.create
-  MIX_ENV=$ENV_NAME mix ecto.load
+  MIX_ENV=$ENV_NAME mix ecto.load -f
+
+  echo "Populating addresses table with 100,000 randomly generating addresses"
+  psql -h $POSTGRES_HOST -U $POSTGRES_USERNAME -d $POSTGRES_DATABASE < priv/addresses.sql
+
   touch "$FILE"
 fi
 
 echo "Blocking with a tail command - press CTRL-C to break"
+echo "Connect to container using: docker-compose exec elixir bash"
+
 tail -f /dev/null

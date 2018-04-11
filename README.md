@@ -11,7 +11,6 @@ Shows simple examples of increasing concurrency levels with Elixir.
 5. `cp .envrc-sample .envrc`
 6. `docker-compose up -d`
 7. `docker-compose exec elixir bash`
-8. `psql -h postgres -U postgres -d concurrency < priv/addresses.sql`
 
 ## Examples
 
