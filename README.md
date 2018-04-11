@@ -51,6 +51,7 @@ Command: `time mix run -e Concurrency.Functions.SequentialFunctions.run`
 Time: about 5 secs
 
 **ConcurrentFunctions**
+
 Queries the `addresses` table, streams the records and looks for longest/shortest/etc addresses. 
 Performs each of the searches concurrently. 
 
