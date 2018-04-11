@@ -1,4 +1,6 @@
-defmodule Concurrency.ConcurrentProcessor do
+defmodule Concurrency.Processor.ConcurrentProcessor do
+  alias Concurrency.Util.AddressUtil
+
   import Ecto.Query, only: [from: 2]
 
   def run do
@@ -26,11 +28,7 @@ defmodule Concurrency.ConcurrentProcessor do
   end
 
   def process_address(address) do
-    city_and_postcode = [address.city, address.postcode] |> Enum.join(" ")
-
-    full_address =
-      [address.street_address, city_and_postcode]
-      |> Enum.join(", ")
+    full_address = AddressUtil.create_full_address(address)
 
     changeset =
       Ecto.Changeset.change(

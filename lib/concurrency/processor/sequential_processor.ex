@@ -1,5 +1,16 @@
-defmodule Concurrency.SequentialProcessor do
+defmodule Concurrency.Processor.SequentialProcessor do
+  @moduledoc """
+    Demonstrates processing of address records one at a time. Each record 
+    is then manually updated with a `full_address` string and 
+    `full_address_length` integer. 
+
+    This processing method is very inefficient, but does provide a good example 
+    for showing sequential/concurrent speed differences. 
+  """
+
   import Ecto.Query, only: [from: 2]
+
+  alias Concurrency.Util.AddressUtil
 
   def run do
     reset()
@@ -10,6 +21,8 @@ defmodule Concurrency.SequentialProcessor do
     |> Enum.each(&process_address/1)
   end
 
+  # Set all the `full_address` and `full_address_length` values in the 
+  # addresses table back to `NULL`.
   defp reset do
     Concurrency.Repo.update_all(
       Concurrency.Address,
@@ -17,12 +30,10 @@ defmodule Concurrency.SequentialProcessor do
     )
   end
 
+  # Generates then updates the `full_address` and `full_address_length` 
+  # attributes of an `address` record.
   defp process_address(address) do
-    city_and_postcode = [address.city, address.postcode] |> Enum.join(" ")
-
-    full_address =
-      [address.street_address, city_and_postcode]
-      |> Enum.join(", ")
+    full_address = AddressUtil.create_full_address(address)
 
     changeset =
       Ecto.Changeset.change(

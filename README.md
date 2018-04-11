@@ -17,30 +17,6 @@ Shows simple examples of increasing concurrency levels with Elixir.
 You need to have completed the _Getting Started_ steps, and should have a _bash_ 
 shell prompt within the Elixir container. Each of these examples process the 100,000 address records stored within the `addresses` table.
 
-**SequentialProcessor**
-
-Queries the `addresses` table, loads all the records, and then processes each line sequentially.
-
-Command: `time mix run -e Concurrency.SequentialProcessor.run`
-
-Time: about 3 mins
-
-**SequentialStreamProcessor**
-
-Queries the `addresses` table, streams the records, and processes each line sequentially.
-
-Command: `time mix run -e Concurrency.SequentialStreamProcessor.run`
-
-Time: about 2 mins
-
-**ConcurrentProcessor**
-
-Queries the `addresses` table, loads all the records, and then processes each line concurrently.
-
-Command: `time mix run -e Concurrency.ConcurrentProcessor.run`
-
-Time: about 1 mins
-
 **SequentialFunctions**
 
 Queries the `addresses` table, streams the records and looks for longest/shortest/etc addresses. 
@@ -54,15 +30,39 @@ Time: about 5 secs
 Queries the `addresses` table, streams the records and looks for longest/shortest/etc addresses. 
 Performs each of the searches concurrently. 
 
-Command: `time mix run -e Concurrency.Functions.ConcurrentFunction.run`
+Command: `time mix run -e Concurrency.Functions.ConcurrentFunctions.run`
 
 Time: about 3 secs
+
+**SequentialProcessor**
+
+Queries the `addresses` table, loads all the records, and then processes each line sequentially.
+
+Command: `time mix run -e Concurrency.Processor.SequentialProcessor.run`
+
+Time: about 3 mins
+
+**SequentialStreamProcessor**
+
+Queries the `addresses` table, streams the records, and processes each line sequentially.
+
+Command: `time mix run -e Concurrency.Processor.SequentialStreamProcessor.run`
+
+Time: about 2 mins
+
+**ConcurrentProcessor**
+
+Queries the `addresses` table, loads all the records, and then processes each line concurrently.
+
+Command: `time mix run -e Concurrency.Processor.ConcurrentProcessor.run`
+
+Time: about 1 mins
 
 ## Timing
 
 Use the `time` command to compare execution times. For example: 
 
-`time mix run -e Concurrency.Functions.ConcurrentFunction.run` 
+`time mix run -e Concurrency.Functions.ConcurrentFunctions.run` 
 
 ```
 real	0m2.898s
