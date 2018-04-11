@@ -1,6 +1,6 @@
 # Introducing Concurrency
 
-### A code walk-through showing some basic ways to introduce concurrency to your Elixir application
+### A code walk-through showing basic ways to add concurrency to your Elixir application
 
 ### [@nigelramsay](https://twitter.com/nigelramsay)
 
