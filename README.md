@@ -18,40 +18,45 @@ Shows simple examples of increasing concurrency levels with Elixir.
 You need to have completed the _Getting Started_ steps, and should have a _bash_ 
 shell prompt within the Elixir container.
 
-*SequentialProcessor*
+**SequentialProcessor**
 
 Queries the `addresses` table, loads all the records, and then processes each line sequentially.
 
 Command: `time mix run -e Concurrency.SequentialProcessor.run`
+
 Time: about 3 mins
 
-*SequentialStreamProcessor*
+**SequentialStreamProcessor**
 
 Queries the `addresses` table, streams the records, and processes each line sequentially.
 
 Command: `time mix run -e Concurrency.SequentialStreamProcessor.run`
+
 Time: about 2 mins
 
-*ConcurrentProcessor*
+**ConcurrentProcessor**
 
 Queries the `addresses` table, loads all the records, and then processes each line concurrently.
 
 Command: `time mix run -e Concurrency.ConcurrentProcessor.run`
+
 Time: about 1 mins
 
-*SequentialFunctions*
+**SequentialFunctions**
 
 Queries the `addresses` table, streams the records and looks for longest/shortest/etc addresses. 
 Performs each of the searches sequentially. 
 
 Command: `time mix run -e Concurrency.Functions.SequentialFunctions.run`
+
 Time: about 5 secs
 
-*ConcurrentFunctions*
+**ConcurrentFunctions**
 Queries the `addresses` table, streams the records and looks for longest/shortest/etc addresses. 
 Performs each of the searches concurrently. 
 
 Command: `time mix run -e Concurrency.Functions.ConcurrentFunction.run`
+
 Time: about 3 secs
 
 ## Timing
