@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+  elixir:
+    build: .
+    env_file:
+      - .container.env
+    volumes:
+      - .:/app
+      - mix-cache:/root/.mix
+      - build-cache:/app/_build
+    depends_on:
+      - postgres
+    command: bin/docker-start
+  postgres:
+    image: mdillon/postgis:10-alpine
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5432:5432"
+
+volumes:
+  postgresql-data: {}
+  mix-cache: {}
+  build-cache: {}
