@@ -16,7 +16,7 @@ Shows simple examples of increasing concurrency levels with Elixir.
 ## Examples
 
 You need to have completed the _Getting Started_ steps, and should have a _bash_ 
-shell prompt within the Elixir container.
+shell prompt within the Elixir container. Each of these examples process the 100,000 address records stored within the `addresses` table.
 
 **SequentialProcessor**
 
